@@ -1,12 +1,12 @@
 const port= 3000;
-const socket = io("https://chat-app-cr7k.onrender.com");
+const socket = io(`http://localhost:${port}`);
 const joinForm = document.getElementById('joinForm');
 const messageForm = document.getElementById('send-container');
 const messageinput = document.getElementById('messageinput');
 const messagecontainer = document.querySelector('.container');
 const roomidInput = document.getElementById('roomInput');
 const generateIDButton = document.getElementById('generateID');
-const members=document.querySelector('.join-form');
+const rid=document.querySelector('.disproom');
 let room = ''; // Store the current room ID
 let name = '';
 
@@ -33,18 +33,24 @@ joinForm.addEventListener('submit', (e) => {
     joinForm.style.display = 'none';
     messageForm.style.display = 'block';
   }
+  rid.innerHTML=`Room Id: ${room}`;
 });
-
 generateIDButton.addEventListener('click', (e) => {
   e.preventDefault();
   generateUniqueId();
 });
-socket.on('memberlist',(name)=>{
-  const newmember = document.createElement('div');
-  newmember.innerText = name;
-  newmember.classList.add('nmember');
-  members.append(newmember);
-})
+socket.on('memberlist', ({ membersList }) => {
+   const membersContainer = document.querySelector('.join-form');
+   const newMembersContainer = document.createElement('div');
+   membersList.forEach((m) => {
+     const newMember = document.createElement('div');
+     newMember.innerText = `${m} : Online`;
+     newMember.classList.add('nmember');
+     newMembersContainer.appendChild(newMember);
+   });
+   membersContainer.innerHTML = '';
+   membersContainer.appendChild(newMembersContainer);
+ });
 socket.on('user-joined', (data) => {
   append(`${data.name} joined the chat`, 'left');
 });
