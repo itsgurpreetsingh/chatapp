@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const server = require('http').createServer(app);
+app.use(express.static("public"));
 const io = require('socket.io')(server, {
   cors: {
     origin: '*',
