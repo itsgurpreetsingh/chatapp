@@ -1,5 +1,5 @@
 const port= 3000;
-const socket = io(`http://localhost:${port}`);
+const socket = io('https://chat-app-4vsp.onrender.com');
 const joinForm = document.getElementById('joinForm');
 const messageForm = document.getElementById('send-container');
 const messageinput = document.getElementById('messageinput');
