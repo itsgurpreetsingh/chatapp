@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-SNRLktV7z24n8I8tylFjH6ya6yj9j/zTYYDOi33IjuFcwwz3Zfs7sfq6LYIM+qpg8fFn7AAbg7wGtZ8r+BH7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="js/client.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="headings">
+    <h1 class="mainhead"><B>CHAT APP</B></h1>
+    <h2 class="disproom"></h2>
+  </div>
+  <div class="join-form">
+    <form id="joinForm" autocomplete="off">
+      <label for="nameInput">Enter your name:</label>
+      <input type="text" id="nameInput" name="name" required>
+      <label for="roomInput">Enter room ID:</label>
+      <input type="text" id="roomInput" name="room" required>
+      <button id="generateID">Generate Unique ID</button>
+      <button type="submit">Join</button>
+    </form>
+    <h3>Members Online :</h3>
+    <div class="nmembers">
+
+    </div>
+  </div>
+  <div class="container">
+    <!-- Chat messages will be displayed here -->
+  </div>
+  <div class="send">
+    <form id="send-container" method="post">
+      <input type="text" name="messageinp" id="messageinput">
+      <button type="submit" class="btn" name="button">Send</button>
+    </form>
+  </div>
+</body>
+</html>
